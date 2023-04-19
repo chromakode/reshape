@@ -1,0 +1,80 @@
+---
+import { sample } from 'lodash-es'
+import shapes from '../shapes.json'
+
+const quotes = [
+  'the letter S',
+  'the midnight hours',
+  'the future',
+  'super ninja skills',
+  'love',
+  'you',
+  'the western civilization',
+  '#000000',
+  'tomorrow',
+  'yesterday',
+  '2-space',
+  'so much drama',
+]
+---
+
+<footer>
+  <a href="http://www.chromakode.com" id="homelink"
+    ><img
+      src="/image/logo-acrylic-corner.png"
+      srcset={`/image/logo-acrylic-corner.png, /image/logo-acrylic-corner_2x.png 2x`}
+      alt="logo"
+      title="HELLO"
+    /></a
+  >
+  <p>
+    <a href="/page/1/" title="First Shape">1</a> &middot; <a
+      href="/about/"
+      title="About Shape">about</a
+    > &middot; <a href="/category/favorites/" title="Favorite Shapes"
+      >favorites</a
+    > &middot; <a href="/archives/" title="Shape Archives">archives</a> &middot;
+    <a href={`/page/${shapes.length}`} title="Latest Shape">{shapes.length}</a>
+  </p>
+  <p>
+    Powered by <a href="https://astro.build"><strong>Astro</strong></a>, <a
+      href="https://www.inkscape.org"
+      title="All graphics made using Inkscape."><strong>Inkscape</strong></a
+    >, and {sample(quotes)}.
+  </p>
+</footer>
+
+<style>
+  footer {
+    position: relative;
+    width: 724px;
+    margin: 0 auto;
+    margin-top: -8em;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px;
+    text-align: center;
+  }
+
+  footer a {
+    color: #cc0;
+  }
+
+  footer a:hover {
+    color: #fff;
+  }
+
+  #homelink {
+    position: absolute;
+    display: flex;
+    right: 0px;
+    top: 4px;
+    font-size: 150%;
+    color: #222;
+    text-decoration: none;
+  }
+
+  #homelink:hover {
+    color: #555;
+  }
+</style>

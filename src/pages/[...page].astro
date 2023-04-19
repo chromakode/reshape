@@ -1,0 +1,47 @@
+---
+import type { GetStaticPathsResult } from 'astro'
+import { last } from 'lodash-es'
+import Page from '../layouts/Page.astro'
+import shapes from '../shapes.json'
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsResult = shapes.map(({ page, ...rest }) => ({
+    params: { page: `page/${page}` },
+    props: { page, ...rest },
+  }))
+
+  // The last page is the index page
+  paths.push({
+    params: { page: undefined },
+    props: last(shapes),
+  })
+
+  return paths
+}
+
+export interface Props {
+  page: number
+  title: string
+}
+
+const { page, title } = Astro.props
+---
+
+<Page page={page}>
+  <article>
+    <img
+      src={`/image/shape/${page}.png`}
+      srcset={`/image/shape/${page}.png, /image/shape/${page}_2x.png 2x`}
+      alt={title}
+      width="700"
+    />
+  </article>
+</Page>
+
+<style>
+  :global(main) article {
+    height: 1000px;
+    margin: 14px 0;
+    overflow: hidden;
+  }
+</style>

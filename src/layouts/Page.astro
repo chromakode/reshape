@@ -1,0 +1,144 @@
+---
+import Footer from '../components/Footer.astro'
+import Head from '../components/Head.astro'
+import shapes from '../shapes.json'
+
+export interface Props {
+  page?: number
+}
+
+const { page } = Astro.props
+---
+
+<html lang="en">
+  <Head page={page} />
+  <body>
+    <div id="container">
+      <header>
+        <h1 id="title">
+          <a href="/">Shape</a>
+        </h1>
+        <!-- ..... .. . -
+           - .......    -
+           - .......... -
+           - ......     -
+           - ....... .. -->
+        {
+          page != null && (
+            <>
+              <nav>
+                {page > 1 && (
+                  <a href={`/page/${page - 1}`}>
+                    <span class="navprevious">&laquo; Previous</span>
+                  </a>
+                )}
+                {page > 1 && page < shapes.length && <> &mdash; </>}
+                {page < shapes.length && (
+                  <a href={`/page/${page + 1}`}>
+                    <span class="navprevious">Next &raquo;</span>
+                  </a>
+                )}
+              </nav>
+            </>
+          )
+        }
+      </header>
+      <main>
+        <slot />
+      </main>
+    </div>
+    <Footer />
+
+    <style is:global>
+      a {
+        color: #ccc;
+      }
+
+      a img {
+        border: none;
+      }
+
+      a:visited {
+        color: #aaa;
+      }
+
+      a:hover {
+        color: #fff;
+      }
+    </style>
+
+    <style>
+      html {
+        height: 100%;
+      }
+
+      body {
+        background: #000;
+        font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      #container {
+        position: relative;
+        width: 730px;
+        min-height: 100%;
+        margin: 0 auto;
+        border-left: solid 15px #222;
+        border-right: solid 15px #222;
+      }
+
+      main {
+        text-align: center;
+        margin: 0 auto;
+        border-top: solid 2px #191919;
+        padding-bottom: 6rem;
+      }
+
+      main :global(article) {
+        margin: 3em 30px 0;
+      }
+
+      header {
+        background: #222;
+        padding: 15px 10px 5px 15px;
+      }
+
+      h1#title {
+        margin: 0;
+      }
+
+      h1#title a {
+        background: url(/image/title.svg) no-repeat top right;
+        width: 161px;
+        height: 75px;
+        margin-bottom: -21px;
+        text-indent: -5000px;
+        display: block;
+        overflow: hidden;
+      }
+
+      nav {
+        position: absolute;
+        display: block;
+        top: 25px;
+        right: 15px;
+        font-size: 16pt;
+        text-align: left;
+        height: 30px;
+        background-color: #000;
+        color: #555;
+        white-space: nowrap;
+        padding: 5px 15px 5px 15px;
+        border-radius: 5px;
+      }
+
+      nav a {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    </style>
+  </body>
+</html>

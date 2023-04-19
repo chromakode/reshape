@@ -1,0 +1,36 @@
+---
+import shapes from '../shapes.json'
+
+export interface Props {
+  page?: number
+}
+
+const { page } = Astro.props
+---
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width" />
+  <meta name="generator" content={Astro.generator} />
+  <title>Shape</title>
+  {
+    page != null && (
+      <>
+        <link rel="preload" href={`/image/shape/${page}.png`} as="image" />
+        {page > 1 && (
+          <>
+            <link rel="prefetch" href={`/page/${page - 1}`} />
+            <link rel="prefetch" href={`/image/shape/${page - 1}.png`} />
+          </>
+        )}
+        {page < shapes.length && (
+          <>
+            <link rel="prefetch" href={`/page/${page + 1}`} />
+            <link rel="prefetch" href={`/image/shape/${page + 1}.png`} />
+          </>
+        )}
+      </>
+    )
+  }
+</head>
