@@ -19,18 +19,35 @@ const { page } = Astro.props
       <>
         <link rel="preload" href={`/image/shape/${page}.png`} as="image" />
         {page > 1 && (
-          <>
-            <link rel="prefetch" href={`/page/${page - 1}`} />
-            <link rel="prefetch" href={`/image/shape/${page - 1}.png`} />
-          </>
+          <link
+            rel="prefetch"
+            href={`/page/${page - 1}`}
+            data-page={page - 1}
+          />
         )}
         {page < shapes.length && (
-          <>
-            <link rel="prefetch" href={`/page/${page + 1}`} />
-            <link rel="prefetch" href={`/image/shape/${page + 1}.png`} />
-          </>
+          <link
+            rel="prefetch"
+            href={`/page/${page + 1}`}
+            data-page={page + 1}
+          />
         )}
       </>
     )
   }
 </head>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    for (const prefetchEl of document.querySelectorAll<HTMLLinkElement>(
+      'link[rel=prefetch][data-page]',
+    )) {
+      const imgPrefetch = document.createElement('link')
+      const { page } = prefetchEl.dataset
+      const is2x = window.devicePixelRatio > 1
+      imgPrefetch.rel = 'prefetch'
+      imgPrefetch.href = `/image/shape/${page}${is2x ? '_2x' : ''}.png`
+      document.head.appendChild(imgPrefetch)
+    }
+  })
+</script>
