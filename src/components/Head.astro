@@ -41,16 +41,24 @@ const { page } = Astro.props
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    const BASE_URL = import.meta.env.BASE_URL
+
     for (const prefetchEl of document.querySelectorAll<HTMLLinkElement>(
       'link[rel=prefetch][data-page]',
     )) {
-      const imgPrefetch = document.createElement('link')
       const { page } = prefetchEl.dataset
-      const is2x = window.devicePixelRatio > 1
+
+      const { devicePixelRatio: dpr } = window
+      let variant = ''
+      if (dpr > 2) {
+        variant = '_4x'
+      } else if (dpr > 1) {
+        variant = '_2x'
+      }
+
+      const imgPrefetch = document.createElement('link')
       imgPrefetch.rel = 'prefetch'
-      imgPrefetch.href = `${import.meta.env.BASE_URL}image/${page}${
-        is2x ? '_2x' : ''
-      }.png`
+      imgPrefetch.href = `${BASE_URL}image/${page}${variant}.png`
       document.head.appendChild(imgPrefetch)
     }
   })
