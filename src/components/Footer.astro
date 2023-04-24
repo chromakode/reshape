@@ -2,6 +2,8 @@
 import { sample } from 'lodash-es'
 import shapes from '../shapes.json'
 
+const BASE_URL = import.meta.env.BASE_URL
+
 const quotes = [
   'the letter S',
   'the midnight hours',
@@ -19,22 +21,25 @@ const quotes = [
 ---
 
 <footer>
-  <a href="http://www.chromakode.com" id="homelink"
+  <a href="https://www.chromakode.com" id="homelink"
     ><img
-      src="/image/logo-acrylic-corner.png"
-      srcset={`/image/logo-acrylic-corner.png, /image/logo-acrylic-corner_2x.png 2x`}
+      src={`${BASE_URL}image/logo-acrylic-corner.png`}
+      srcset={`${BASE_URL}image/logo-acrylic-corner.png, ${BASE_URL}image/logo-acrylic-corner_2x.png 2x`}
       alt="logo"
       title="HELLO"
     /></a
   >
   <p>
-    <a href="/page/1/" title="First Shape">1</a> &middot; <a
-      href="/about/"
-      title="About Shape">about</a
-    > &middot; <a href="/category/favorites/" title="Favorite Shapes"
+    <a href={`${BASE_URL}page/1/`} title="First Shape">1</a> &middot;
+    <a href={`${BASE_URL}about/`} title="About Shape">about</a> &middot;
+    <a href={`${BASE_URL}category/favorites/`} title="Favorite Shapes"
       >favorites</a
-    > &middot; <a href="/archives/" title="Shape Archives">archives</a> &middot;
-    <a href={`/page/${shapes.length}`} title="Latest Shape">{shapes.length}</a>
+    > &middot; <a href={`${BASE_URL}archives/`} title="Shape Archives"
+      >archives</a
+    > &middot;
+    <a href={`${BASE_URL}page/${shapes.length}`} title="Latest Shape"
+      >{shapes.length}</a
+    >
   </p>
   <p>
     Powered by <a href="https://astro.build"><strong>Astro</strong></a>, <a

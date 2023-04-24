@@ -4,6 +4,8 @@ import { last } from 'lodash-es'
 import Page from '../layouts/Page.astro'
 import shapes from '../shapes.json'
 
+const BASE_URL = import.meta.env.BASE_URL
+
 export async function getStaticPaths() {
   const paths: GetStaticPathsResult = shapes.map(({ page, ...rest }) => ({
     params: { page: `page/${page}` },
@@ -30,8 +32,8 @@ const { page, title } = Astro.props
 <Page page={page}>
   <article>
     <img
-      src={`/image/shape/${page}.png`}
-      srcset={`/image/shape/${page}.png, /image/shape/${page}_2x.png 2x`}
+      src={`${BASE_URL}image/shape/${page}.png`}
+      srcset={`${BASE_URL}image/shape/${page}.png, ${BASE_URL}image/shape/${page}_2x.png 2x`}
       alt={title}
       width="700"
     />

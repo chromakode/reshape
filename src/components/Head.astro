@@ -1,6 +1,8 @@
 ---
 import shapes from '../shapes.json'
 
+const BASE_URL = import.meta.env.BASE_URL
+
 export interface Props {
   page?: number
 }
@@ -17,18 +19,17 @@ const { page } = Astro.props
   {
     page != null && (
       <>
-        <link rel="preload" href={`/image/shape/${page}.png`} as="image" />
         {page > 1 && (
           <link
             rel="prefetch"
-            href={`/page/${page - 1}`}
+            href={`${BASE_URL}page/${page - 1}`}
             data-page={page - 1}
           />
         )}
         {page < shapes.length && (
           <link
             rel="prefetch"
-            href={`/page/${page + 1}`}
+            href={`${BASE_URL}page/${page + 1}`}
             data-page={page + 1}
           />
         )}
@@ -46,7 +47,9 @@ const { page } = Astro.props
       const { page } = prefetchEl.dataset
       const is2x = window.devicePixelRatio > 1
       imgPrefetch.rel = 'prefetch'
-      imgPrefetch.href = `/image/shape/${page}${is2x ? '_2x' : ''}.png`
+      imgPrefetch.href = `${import.meta.env.BASE_URL}image/shape/${page}${
+        is2x ? '_2x' : ''
+      }.png`
       document.head.appendChild(imgPrefetch)
     }
   })

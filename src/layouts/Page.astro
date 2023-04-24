@@ -3,6 +3,8 @@ import Footer from '../components/Footer.astro'
 import Head from '../components/Head.astro'
 import shapes from '../shapes.json'
 
+const BASE_URL = import.meta.env.BASE_URL
+
 export interface Props {
   page?: number
 }
@@ -16,7 +18,7 @@ const { page } = Astro.props
     <div id="container">
       <header>
         <h1 id="title">
-          <a href="/">Shape</a>
+          <a href={BASE_URL}>Shape</a>
         </h1>
         <!-- ..... .. . -
            - .......    -
@@ -28,13 +30,13 @@ const { page } = Astro.props
             <>
               <nav>
                 {page > 1 && (
-                  <a href={`/page/${page - 1}`}>
+                  <a href={`${BASE_URL}page/${page - 1}`}>
                     <span class="navprevious">&laquo; Previous</span>
                   </a>
                 )}
                 {page > 1 && page < shapes.length && <> &mdash; </>}
                 {page < shapes.length && (
-                  <a href={`/page/${page + 1}`}>
+                  <a href={`${BASE_URL}page/${page + 1}`}>
                     <span class="navprevious">Next &raquo;</span>
                   </a>
                 )}

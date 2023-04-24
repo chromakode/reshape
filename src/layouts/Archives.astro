@@ -4,6 +4,8 @@ import type ShapesData from '../shapes.json'
 import { Image } from 'astro:assets'
 import Page from '../layouts/Page.astro'
 
+const BASE_URL = import.meta.env.BASE_URL
+
 export interface Props {
   title: string
   shapes: Array<(typeof ShapesData)[number]>
@@ -23,7 +25,7 @@ const imgs = await import.meta.glob<{ default: ImageMetadata }>(
   <div class="thumbs">
     {
       shapes.map(({ page, title }) => (
-        <a href={`/page/${page}`}>
+        <a href={`${BASE_URL}page/${page}`}>
           <Image
             src={imgs[`../../public/image/shape/${page}.png`].default}
             alt={title}
