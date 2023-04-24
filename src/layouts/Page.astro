@@ -25,29 +25,29 @@ const { page } = Astro.props
            - .......... -
            - ......     -
            - ....... .. -->
-        {
-          page != null && (
-            <>
-              <nav>
-                {page > 1 && (
-                  <a href={`${BASE_URL}page/${page - 1}/`}>
-                    <span class="navprevious">&laquo; Previous</span>
-                  </a>
-                )}
-                {page > 1 && page < shapes.length && <> &mdash; </>}
-                {page < shapes.length && (
-                  <a href={`${BASE_URL}page/${page + 1}/`}>
-                    <span class="navprevious">Next &raquo;</span>
-                  </a>
-                )}
-              </nav>
-            </>
-          )
-        }
       </header>
       <main>
         <slot />
       </main>
+      {
+        page != null && (
+          <>
+            <nav>
+              {page > 1 && (
+                <a href={`${BASE_URL}page/${page - 1}/`}>
+                  <span class="navprevious">&laquo; Previous</span>
+                </a>
+              )}
+              {page > 1 && page < shapes.length && <> &mdash; </>}
+              {page < shapes.length && (
+                <a href={`${BASE_URL}page/${page + 1}/`}>
+                  <span class="navprevious">Next &raquo;</span>
+                </a>
+              )}
+            </nav>
+          </>
+        )
+      }
     </div>
     <Footer />
 
@@ -85,7 +85,7 @@ const { page } = Astro.props
 
       #container {
         position: relative;
-        width: 730px;
+        max-width: 730px;
         min-height: 100%;
         margin: 0 auto;
         border-left: solid 15px #222;
@@ -139,7 +139,22 @@ const { page } = Astro.props
 
       nav a {
         display: inline-block;
-        vertical-align: middle;
+      }
+
+      @media (max-width: 480px) {
+        h1#title a {
+          background-size: 100%;
+          font-size: 0.175vw;
+          width: 161em;
+          height: 75em;
+          margin-bottom: -23em;
+        }
+
+        nav {
+          position: static;
+          text-align: center;
+          margin-top: -5rem;
+        }
       }
     </style>
   </body>
