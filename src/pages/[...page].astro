@@ -30,7 +30,7 @@ const { page, title } = Astro.props
 ---
 
 <Page page={page}>
-  <article>
+  <article class="shape">
     <img
       src={`${BASE_URL}image/shape/${page}.png`}
       srcset={`${BASE_URL}image/shape/${page}.png, ${BASE_URL}image/shape/${page}_2x.png 2x`}
@@ -41,7 +41,7 @@ const { page, title } = Astro.props
 </Page>
 
 <style>
-  :global(main) article {
+  article.shape {
     height: 1000px;
     margin: 14px 0;
     overflow: hidden;
