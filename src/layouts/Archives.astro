@@ -14,7 +14,7 @@ export interface Props {
 const { title, shapes } = Astro.props
 
 const imgs = await import.meta.glob<{ default: ImageMetadata }>(
-  `../../public/image/shape/*.png`,
+  `../../public/image/*.png`,
   { eager: true },
 )
 ---
@@ -27,7 +27,7 @@ const imgs = await import.meta.glob<{ default: ImageMetadata }>(
       shapes.map(({ page, title }) => (
         <a href={`${BASE_URL}page/${page}`}>
           <Image
-            src={imgs[`../../public/image/shape/${page}.png`].default}
+            src={imgs[`../../public/image/${page}.png`].default}
             alt={title}
             width={2 * 67}
             height={2 * 96}

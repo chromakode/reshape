@@ -32,8 +32,8 @@ const { page, title } = Astro.props
 <Page page={page}>
   <article class="shape">
     <img
-      src={`${BASE_URL}image/shape/${page}.png`}
-      srcset={`${BASE_URL}image/shape/${page}.png, ${BASE_URL}image/shape/${page}_2x.png 2x`}
+      src={`${BASE_URL}image/${page}.png`}
+      srcset={`${BASE_URL}image/${page}.png, ${BASE_URL}image/${page}_2x.png 2x`}
       alt={title}
       width="700"
     />
