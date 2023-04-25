@@ -25,7 +25,7 @@ const imgs = await import.meta.glob<{ default: ImageMetadata }>(
   <div class="thumbs">
     {
       shapes.map(({ page, title }) => (
-        <a href={`${BASE_URL}page/${page}`}>
+        <a href={`${BASE_URL}${page}`}>
           <Image
             src={imgs[`../../public/image/${page}.png`].default}
             alt={title}
