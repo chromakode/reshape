@@ -35,13 +35,13 @@ const { page } = Astro.props
           <>
             <nav>
               {page > 1 && (
-                <a href={`${BASE_URL}${page - 1}/`}>
+                <a href={`${BASE_URL}/${page - 1}`}>
                   <span>&laquo; Previous</span>
                 </a>
               )}
               {page > 1 && page < shapes.length && <>&nbsp;&mdash;&nbsp;</>}
               {page < shapes.length && (
-                <a href={`${BASE_URL}${page + 1}/`}>
+                <a href={`${BASE_URL}/${page + 1}`}>
                   <span>Next &raquo;</span>
                 </a>
               )}

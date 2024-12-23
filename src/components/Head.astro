@@ -12,7 +12,7 @@ const { page } = Astro.props
 
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href={`${BASE_URL}favicon.svg`} />
+  <link rel="icon" type="image/svg+xml" href={`${BASE_URL}/favicon.svg`} />
   <meta name="viewport" content="width=device-width" />
   <meta name="generator" content={Astro.generator} />
   <title>Shape</title>
@@ -23,14 +23,14 @@ const { page } = Astro.props
         {page > 1 && (
           <link
             rel="prefetch"
-            href={`${BASE_URL}page/${page - 1}/`}
+            href={`${BASE_URL}/page/${page - 1}/`}
             data-page={page - 1}
           />
         )}
         {page < shapes.length && (
           <link
             rel="prefetch"
-            href={`${BASE_URL}page/${page + 1}/`}
+            href={`${BASE_URL}/page/${page + 1}/`}
             data-page={page + 1}
           />
         )}
@@ -58,7 +58,7 @@ const { page } = Astro.props
 
       const imgPrefetch = document.createElement('link')
       imgPrefetch.rel = 'prefetch'
-      imgPrefetch.href = `${BASE_URL}image/${page}${variant}.png`
+      imgPrefetch.href = `${BASE_URL}/image/${page}${variant}.png`
       document.head.appendChild(imgPrefetch)
     }
   })

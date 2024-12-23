@@ -7,11 +7,8 @@ export default defineConfig({
   site: 'https://chromakode.com/shape/',
   base: '/shape',
   outDir: './dist/shape/',
-  experimental: {
-    assets: true,
-  },
   image: {
-    service: 'astro/assets/services/sharp',
+    service: { entrypoint: 'astro/assets/services/sharp' },
   },
   integrations: [
     compress({ html: { ignoreCustomComments: [/[-\. ]+/] }, img: false }),
