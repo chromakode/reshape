@@ -23,14 +23,14 @@ const { page } = Astro.props
         {page > 1 && (
           <link
             rel="prefetch"
-            href={`${BASE_URL}/page/${page - 1}/`}
+            href={`${BASE_URL}/page/${page - 1}`}
             data-page={page - 1}
           />
         )}
         {page < shapes.length && (
           <link
             rel="prefetch"
-            href={`${BASE_URL}/page/${page + 1}/`}
+            href={`${BASE_URL}/page/${page + 1}`}
             data-page={page + 1}
           />
         )}
