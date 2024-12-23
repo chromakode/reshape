@@ -6,6 +6,7 @@ import compress from 'astro-compress'
 export default defineConfig({
   site: 'https://chromakode.com/shape/',
   base: '/shape',
+  outDir: './dist/shape/',
   experimental: {
     assets: true,
   },
