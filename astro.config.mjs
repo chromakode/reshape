@@ -11,6 +11,6 @@ export default defineConfig({
     service: { entrypoint: 'astro/assets/services/sharp' },
   },
   integrations: [
-    compress({ html: { ignoreCustomComments: [/[-\. ]+/] }, img: false }),
+    compress({ HTML: { ignoreCustomComments: [/[-\. ]+/] }, Image: false }),
   ],
 })
